@@ -1,15 +1,17 @@
-"""pyramid_formencode_classic installation script.
+"""pyramid_sendmail installation script.
 """
 import os
 
 from setuptools import setup
 from setuptools import find_packages
 
+here = os.path.abspath(os.path.dirname(__file__))
 
 
 requires = [
     "pyramid",
     "pyramid_mailer",
+    "repoze.sendmail",
     ]
 
 setup(name="pyramid_sendmail",
@@ -23,12 +25,11 @@ setup(name="pyramid_sendmail",
         "License :: OSI Approved :: BSD License",
         ],
       keywords="web pyramid",
-      py_modules=['pyramid_sendmail'],
+      packages=['pyramid_sendmail'],
       author="Jonathan Vanasco",
       author_email="jonathan@findmeon.com",
       url="https://github.com/jvanasco/pyramid_sendmail",
       license="MIT",
-      packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
       tests_require = requires,
