@@ -12,8 +12,8 @@ from .r_delivery import SendmailDelivery
 
 class Mailer(pyramid_mailer_Mailer):
 
-    def __init__(self,**kwargs):
-        """ we're going to wrap the pyramid_mailer.mailer.Mailer class , but figure out some sendmail functionality first """
+    def __init__(self, **kwargs):
+        """ we're going to wrap the pyramid_mailer.mailer.Mailer class, but figure out some sendmail functionality first."""
 
         sendmail_app = None
         sendmail_template = None
@@ -21,17 +21,16 @@ class Mailer(pyramid_mailer_Mailer):
             sendmail_app = kwargs['sendmail_app']
         if 'sendmail_template' in kwargs:
             sendmail_template = kwargs['sendmail_template']
-        if sendmail_app :
-            self.sendmail_mailer = SendmailMailer( sendmail_app , sendmail_template )
+        if sendmail_app:
+            self.sendmail_mailer = SendmailMailer(sendmail_app, sendmail_template)
         else:
             self.sendmail_mailer = SendmailMailer()
         self.sendmail_delivery = SendmailDelivery(self.sendmail_mailer)
 
         ## ok, let the superclass take over
-        pyramid_mailer_Mailer.__init__( self , **kwargs )
+        pyramid_mailer_Mailer.__init__(self, **kwargs)
 
-
-    def send_sendmail(self, message ):
+    def send_sendmail(self, message):
         """
         Sends a message within the transaction manager.
 
@@ -40,7 +39,6 @@ class Mailer(pyramid_mailer_Mailer):
         :param message: a **Message** instance.
         """
         return self.sendmail_delivery.send(*self._message_args(message))
-
 
     def send_immediately_sendmail(self, message, fail_silently=False):
         """
@@ -59,6 +57,6 @@ class Mailer(pyramid_mailer_Mailer):
 
         try:
             return self.sendmail_mailer.send(*self._message_args(message))
-        except :
+        except:
             if not fail_silently:
                 raise
