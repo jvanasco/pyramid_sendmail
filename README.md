@@ -1,5 +1,14 @@
 pyramid_sendmail
 
+# DEPRECATED #
+
+this package was created to push 'sendmail' functionality into pyramid_mailer/repoze.sendmail
+
+that functionality has since been integrated.  don't use this.
+
+
+## OLD ##
+
 i wanted / needed sendmail functionality in my pyramid apps
 
 pyramid_mailer wraps respoze.sendmail which, despite it's name, does not interface with sendmail at all -- it supports SMTP and 'maildir' message creation
