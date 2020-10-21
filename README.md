@@ -1,27 +1,40 @@
+This Package is EOL and unsupported.
+====================================
+
+DEPRECATED
+==========
+
+This package was created to support 'sendmail' functionality in `pyramid_mailer`
+and `repoze.sendmail`.
+
+That exact functionality was since integrated. 
+
+DO NOT USE THIS LIBRARY.  IT IS OLD. IT IS NOT NEEDED.
+
+
 pyramid_sendmail
+================
 
-# DEPRECATED #
+Why?
+----
 
-this package was created to push 'sendmail' functionality into pyramid_mailer/repoze.sendmail
+I wanted/needed `sendmail` functionality in my Pyramid apps.
 
-that functionality has since been integrated.  don't use this.
+`pyramid_mailer` wraps `respoze.sendmail` which - despite it's name - does not
+actually interface with `sendmail` at all; it supports SMTP and 'maildir'
+message creation.
 
+This package was created with 3 things in mind:
 
-## OLD ##
+1. *speed*: It's quick and dirty because i needed this done fast.
 
-i wanted / needed sendmail functionality in my pyramid apps
+2. *compatibility*: It tries to subclass as much as possible, to both leverage
+   the infrastructure from the aftorementioned 2 projects, and be easy to migrate
+   (they all use the same messages, formats, etc). The only thing you should
+   need to do, is replace references to `pyramid_mailer`'s init and `get_mailer()`
+   functions with calls to `pyramid_sendmail`.
 
-pyramid_mailer wraps respoze.sendmail which, despite it's name, does not interface with sendmail at all -- it supports SMTP and 'maildir' message creation
-
-this package was created with 3 things in mind:
-
-1 speed.  it's quick and dirty because i needed this done fast.
-
-2 compatibility.  it tries to subclass as much as possible, to both leverage the infrastructure from the aftorementioned 2 projects and be easy to migrate ( they all use the same messages, formats, etc).  the only thing you should need to do, is replace references to pyramid_mailer's init and get_mailer() functions with calls to pyramid_sendmail
-
-3 potential upstream push. this functionality should really be in repoze and pyramid_sendmail.  functionality that extends pyramid_mailer are in p_ files, and repoze specific functionality is in r_ files
-
-
-
-
-
+3. *potential upstream push*: This functionality should really be in `repoze`
+   and `pyramid_sendmail`. Functionality that extends `pyramid_mailer` is in
+   `p_` prefixed files; and `repoze` specific functionality is in `r_` prefixed
+   files.

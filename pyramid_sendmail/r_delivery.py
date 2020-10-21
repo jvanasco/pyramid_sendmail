@@ -12,5 +12,4 @@ class SendmailDelivery(AbstractMailDelivery):
         self.mailer = mailer
 
     def createDataManager(self, fromaddr, toaddrs, message):
-        return MailDataManager(self.mailer.send,
-                               args=(fromaddr, toaddrs, message))
+        return MailDataManager(self.mailer.send, args=(fromaddr, toaddrs, message))

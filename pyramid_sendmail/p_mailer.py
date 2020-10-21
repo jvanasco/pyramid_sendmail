@@ -11,16 +11,18 @@ from .r_delivery import SendmailDelivery
 
 
 class Mailer(pyramid_mailer_Mailer):
-
     def __init__(self, **kwargs):
-        """ we're going to wrap the pyramid_mailer.mailer.Mailer class, but figure out some sendmail functionality first."""
+        """
+        we're going to wrap the ``pyramid_mailer.mailer.Mailer`` class...
+        but figure out some `sendmail` functionality first.
+        """
 
         sendmail_app = None
         sendmail_template = None
-        if 'sendmail_app' in kwargs:
-            sendmail_app = kwargs['sendmail_app']
-        if 'sendmail_template' in kwargs:
-            sendmail_template = kwargs['sendmail_template']
+        if "sendmail_app" in kwargs:
+            sendmail_app = kwargs["sendmail_app"]
+        if "sendmail_template" in kwargs:
+            sendmail_template = kwargs["sendmail_template"]
         if sendmail_app:
             self.sendmail_mailer = SendmailMailer(sendmail_app, sendmail_template)
         else:
@@ -51,7 +53,6 @@ class Mailer(pyramid_mailer_Mailer):
         will be swallowed.
 
         :param message: a **Message** instance.
-
         :param fail_silently: silently handle connection errors.
         """
 

@@ -12,7 +12,7 @@ from repoze.sendmail.delivery import copy_message
 class SendmailMailer(object):
     implements(IMailer)
 
-    sendmail_app = '/usr/sbin/sendmail'
+    sendmail_app = "/usr/sbin/sendmail"
     sendmail_template = "%(sendmail_app)s -t -i -f %(sender)s"
 
     # sendmail vars
@@ -32,7 +32,11 @@ class SendmailMailer(object):
         if isinstance(message, Message):
             message = message.as_string()
 
-        p = os.popen(self.sendmail_template % {'sendmail_app': self.sendmail_app, 'sender': fromaddr}, "w")
+        p = os.popen(
+            self.sendmail_template
+            % {"sendmail_app": self.sendmail_app, "sender": fromaddr},
+            "w",
+        )
         p.write(message)
         status = p.close()
         if status:
